@@ -1,5 +1,10 @@
 # RunYourCodeOnAWS
-This repository contains example playbooks to help you run your code on AWS EC2 instance.
+This repository contains example playbooks to help you run your code on AWS EC2 instance
+using the following steps:
+1) Pull your code from repository, push in to Nexus Repository.
+2) Set up an EC2 instance.
+3) Connect your EC2 instance and pull repository from Nexus.
+
 A breief, motivation and concrete instructions can be found in the attached post.
 
 To run the playbooks:
