@@ -1,0 +1,27 @@
+---
+# tasks file for ec2_provision_handler
+- name: create an aws instance
+  ec2:
+    profile: "{{source_profile}}"
+    key_name: "{{ key_name }}"
+    # t2.medium for having 2 cpu cores, 4 GB
+    instance_type: t2.medium
+    image: "{{image}}"
+    wait: yes
+    group: "{{instance_name}}"
+    count: 1
+    vpc_subnet_id: "{{vpc_subnet_id}}"
+    assign_public_ip: yes
+    region: 'eu-west-1'
+    volumes:
+    - device_name: /dev/sda1
+      volume_type: gp2
+      volume_size: 256
+      delete_on_termination: true
+    instance_tags:
+      Name: my_instance
+  register: ec2
+
+- add_host:
+    name: "{{ ec2.instances[0].public_ip }}"
+    groups: ec2_host
