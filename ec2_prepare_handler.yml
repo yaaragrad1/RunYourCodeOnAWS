@@ -1,0 +1,6 @@
+---
+- name: copy nexus cloud key to ec2 instance
+  shell: scp -i "{{public_key}}" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r "{{nexus_key}}" ubuntu@{{ec2.instances[0].public_ip}}:/home/ubuntu/
+
+- name: pull repo from nexus
+  shell: docker pull nexus.yourRepo.cloud:8086/repository/docker-internal
