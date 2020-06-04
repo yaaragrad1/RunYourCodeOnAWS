@@ -1,0 +1,11 @@
+--- 
+- hosts: localhost
+  gather_facts: False
+  roles: 
+    - ec2_provision_handler
+    
+- hosts: ec2_host
+  become: true
+  remote_user: ubuntu
+  roles:
+    - ec2_prepare_handler
